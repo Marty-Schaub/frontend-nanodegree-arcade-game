@@ -34,7 +34,7 @@ Character.prototype.update = function(dt1) {
 };
 
 Character.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), 200, 400);
+    ctx.drawImage(Resources.get(this.sprite), 200, 399);
 };
 
 
