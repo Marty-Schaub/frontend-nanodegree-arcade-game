@@ -1,6 +1,17 @@
 frontend-nanodegree-arcade-game
 ===============================
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+This is a project for the Front End Web Developer Nano Degree through Udacity. It is a combinaiton of code provide by Udacity, code from teh web (documented) and my own code from what I have learned.
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+To run the game, download the index.html as well as all the files in the images, js and css folders to your computer. Then simply open the index file in your browser.
+
+To play the game try to make it from the bottom of the screen to the top of the screen by without touching the bugs. You can move forward, backward, and side to side. If you touch a bug, the game will end. If you make it to the top you win. In both cases the bugs will disappear and the appropriate message will display on screen. After a 3 second pause, the game will automatically restart.All
+
+Some areas I would like to improve on in the future:
+    Vary the bugs...
+          maybe add some wasps
+    Allow the user to select a difficulty that will increase the number of bugs and the speed of the bugs.
+    Allow the user to select their character
+    Require all 5 blocks on the top to be filled before you win. Each time you fill a block the difficulty would be increased.
+
+For any questions or suggestions, feel free to reach out to me at marty.schaub@gmail.com.
