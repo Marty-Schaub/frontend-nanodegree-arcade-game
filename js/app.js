@@ -1,4 +1,5 @@
 // Enemies our player must avoid
+let crash ="";
 var Enemy = function(x,y,speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -47,8 +48,25 @@ const Character = function (){
 // Draw the character on the screen, required method for game
 Character.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+
 };
 
+const myDialog = function(name){
+  this.name = name;
+
+};
+
+let winner = new myDialog('Winner!!!');
+let loser = new myDialog ("Game Over!!!")
+
+myDialog.prototype.render = function(){
+  ctx.font = "80px Arial";
+    if (crash){
+      ctx.fillText(this.name,25, 350);
+    }else{
+        ctx.fillText(this.name,100, 350);
+      };
+};
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 let enemy1 = new Enemy(10,50,100);
@@ -61,16 +79,9 @@ const player = new Character;
 
 Character.prototype.update = function(dt) {
 
-  if (this.y <=0) {
-    alert ("You Win!!!");
-    location.reload();
-};
-
   for(let i = 0; i < allEnemies.length; i++) {
       this.handleCollision(allEnemies[i]);
-
   }
-
 };
 
 // I was researching else if statements I found this on stack overflow https://stackoverflow.com/questions/8812814/javascript-is-there-a-limit-to-else-if-statements
@@ -120,16 +131,21 @@ Character.prototype.handleCollision = function(otherobj){
   let otherright = otherobj.x + (otherobj.width);
   let othertop = otherobj.y;
   let otherbottom = otherobj.y + (otherobj.height);
-  let crash = true;
+  crash = true;
 
   if ((playerBottom < othertop) || (playerTop > otherbottom) || (playerRight < otherleft) || (playerLeft > otherright)) {
       crash = false;
     };
 
-  if (crash){
-    alert ("GAME OVER!")
-    location.reload();
-};
+//   if (crash){
+//     //alert ("GAME OVER!")
+//     loser.render();
+//     setTimeout(lost, 500);
+//     function lost(){
+//
+//     location.reload();
+//   };
+// };
   return crash;
 
 };

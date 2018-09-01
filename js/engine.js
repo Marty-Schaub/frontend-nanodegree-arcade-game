@@ -154,7 +154,27 @@ var Engine = (function(global) {
         });
 
         player.render();
-    }
+        if (player.y <=0) {
+        winner.render();
+        allEnemies=[];
+        setTimeout(myReload, 3000);
+
+        function myReload(){
+          location.reload();
+        };
+
+        };
+        if (crash){
+          //alert ("GAME OVER!")
+          loser.render();
+          allEnemies =[];
+          setTimeout(lost, 3000);
+          function lost(){
+
+          location.reload();
+        };
+      };
+          }
 
     /* This function does nothing but it could have been a good place to
      * handle game reset states - maybe a new game menu or a game over screen
