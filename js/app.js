@@ -8,6 +8,8 @@ var Enemy = function(x,y,speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
+    this.width = 75;
+    this.height = 75;
     this.sprite = 'images/enemy-bug.png';
 };
 
@@ -21,6 +23,7 @@ Enemy.prototype.update = function(dt) {
     //make sure that enemies won't be hidden behind the canvas
     if (this.x > 475) {
         this.x = 0;
+
     }
 };
 
@@ -36,6 +39,9 @@ const Character = function (){
   this.sprite='images/char-boy.png';
   this.x = 200;
   this.y=400;
+  this.width = 50;
+  this.height = 50;
+
 };
 
 // Draw the character on the screen, required method for game
@@ -55,15 +61,28 @@ const player = new Character;
 
 Character.prototype.update = function(dt) {
 
+  if (this.y <=0) {
+    alert ("You Win!!!");
+    location.reload();
+};
+
+  for(let i = 0; i < allEnemies.length; i++) {
+      this.handleCollision(allEnemies[i]);
+
+  }
+
 };
 
 // I was researching else if statements I found this on stack overflow https://stackoverflow.com/questions/8812814/javascript-is-there-a-limit-to-else-if-statements
 // it recommended using a switch statement instead of else if
 Character.prototype.handleInput = function(input) {
+
     switch (input) {
+
         case 'up':
               if(this.y>0){
                 this.y -= 30;
+
                 break;
               } else {
                 break;
@@ -74,7 +93,6 @@ Character.prototype.handleInput = function(input) {
                break;
              };
         case 'left':
-          console.log (this.x);
               if(this.x>10){
                 this.x -= 25;
                 break;
@@ -88,8 +106,33 @@ Character.prototype.handleInput = function(input) {
             this.x = this.x;
             break;
     };
+
 };
 
+//This code is slightly modified but taken from here https://www.w3schools.com/graphics/tryit.asp?filename=trygame_obstacle_hit
+
+Character.prototype.handleCollision = function(otherobj){
+  let playerLeft = this.x;
+  let playerRight = this.x + (this.width);
+  let playerTop = this.y;
+  let playerBottom = this.y + (this.height);
+  let otherleft = otherobj.x;
+  let otherright = otherobj.x + (otherobj.width);
+  let othertop = otherobj.y;
+  let otherbottom = otherobj.y + (otherobj.height);
+  let crash = true;
+
+  if ((playerBottom < othertop) || (playerTop > otherbottom) || (playerRight < otherleft) || (playerLeft > otherright)) {
+      crash = false;
+    };
+
+  if (crash){
+    alert ("GAME OVER!")
+    location.reload();
+};
+  return crash;
+
+};
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
