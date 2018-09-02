@@ -48,7 +48,6 @@ const Character = function (){
 // Draw the character on the screen, required method for game
 Character.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-
 };
 
 const myDialog = function(name){
@@ -57,15 +56,11 @@ const myDialog = function(name){
 };
 
 let winner = new myDialog('Winner!!!');
-let loser = new myDialog ("Game Over!!!")
+let loser = new myDialog ("Game Over!!!");
 
-myDialog.prototype.render = function(){
+myDialog.prototype.render = function(name){
   ctx.font = "80px Arial";
-    if (crash){
-      ctx.fillText(this.name,25, 350);
-    }else{
-        ctx.fillText(this.name,100, 350);
-      };
+  ctx.fillText(this.name,25,350);
 };
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -81,7 +76,8 @@ Character.prototype.update = function(dt) {
 
   for(let i = 0; i < allEnemies.length; i++) {
       this.handleCollision(allEnemies[i]);
-  }
+
+  };
 };
 
 // I was researching else if statements I found this on stack overflow https://stackoverflow.com/questions/8812814/javascript-is-there-a-limit-to-else-if-statements
@@ -137,15 +133,16 @@ Character.prototype.handleCollision = function(otherobj){
       crash = false;
     };
 
-//   if (crash){
-//     //alert ("GAME OVER!")
-//     loser.render();
-//     setTimeout(lost, 500);
-//     function lost(){
-//
-//     location.reload();
-//   };
-// };
+  if (crash){
+    alert ("GAME OVER!")
+
+    allEnemies= [];
+
+      setTimeout(myReset1, 2000);
+};
+function myReset1(){
+  location.reload();
+};
   return crash;
 
 };

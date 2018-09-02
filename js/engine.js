@@ -80,6 +80,7 @@ var Engine = (function(global) {
     function update(dt) {
         updateEntities(dt);
       //  checkCollisions(crash);
+
     }
 
     /* This is called by the update function and loops through all of the
@@ -92,6 +93,7 @@ var Engine = (function(global) {
     function updateEntities(dt) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
+
         });
         player.update();
     }
@@ -154,26 +156,17 @@ var Engine = (function(global) {
         });
 
         player.render();
-        if (player.y <=0) {
-        winner.render();
-        allEnemies=[];
-        setTimeout(myReload, 3000);
 
-        function myReload(){
+        function myReset(){
+          allEnemies = [];
           location.reload();
-        };
-
-        };
-        if (crash){
-          //alert ("GAME OVER!")
-          loser.render();
-          allEnemies =[];
-          setTimeout(lost, 3000);
-          function lost(){
-
-          location.reload();
-        };
       };
+
+        if (player.y <=0) {
+          winner.render();
+          setTimeout(myReset, 1000);
+        };
+
           }
 
     /* This function does nothing but it could have been a good place to
